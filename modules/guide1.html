@@ -1,0 +1,257 @@
+<div class="container">
+    <h1>Instrucțiuni pentru instalare Windows 10 / 10 IoT LTSC 2021</h1>
+    <h1>
+        Citește cu atenție fiecare pas în parte și nu te grăbi dacă nu ai experiență în instalarea unui sistem de
+        operare.<br>
+        Graba strică treaba, s-ar putea să faci greșeli.
+    </h1>
+
+    <div class="step">
+        <div class="step-title">Pentru început: De ce ai nevoie? 🤔 O să ai link-uri la fiecare pas în parte</div>
+        <div class="step-content">
+            <ul>
+                <li style="color: #27c400; font-weight: bold;"><strong>Un stick USB de minim 8GB (logic nu?)</strong>
+                </li>
+                <li style="color: #27c400; font-weight: bold;"><strong>Windows Media Tool - ca să poți lua .ISO-ul de la
+                        Windows 10</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>Rufus</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>Visual Credits AiO</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>DirectX</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>MassGrave</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>Chris Titus Windows Debloater</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>.ISO pentru Windows 10 IoT LTSC 2021 (opțional,
+                        bun dacă vrei Extended Support)</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>3dp Chip, 3dp Net, 7zip, Windows Photo Viewer
+                        (Opțional)</strong></li>
+                <li style="color: #b8b524; font-weight: bold;"><strong>Puțin creier să ai acolo și niște
+                        răbdare</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">1. Media Tool pentru ISO:</div>
+        <div class="step-content">
+            <p>
+                <a href="https://go.microsoft.com/fwlink/?LinkId=2265055"
+                    target="_blank"><code>Apasă aici >> https://go.microsoft.com/fwlink/?LinkId=2265055</code></a>
+            </p>
+            <ul>
+                <li>Intri în el, dai Accept, selectezi Create Installation Media, dai Next, selectezi ISO File și alegi
+                    unde să îl salvezi (Desktop de preferat ca să-l găsești după)</li>
+                <li>Îl lași să downloadeze, și după ce e gata, închizi aplicația</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">2. Rufus:</div>
+        <div class="step-content">
+            <p>
+                <a href="https://rufus.ie/en/" target="_blank"><code>Apasă aici >> https://rufus.ie/en/</code></a>
+            </p>
+            <ul>
+                <li>Dai scroll mai jos, cauți secțiunea "Download" și alegi varianta pe care să o downloadezi
+                    (Preferabil portable)</li>
+                <li>Intri în el, bagi stick-ul USB, și în dreapta la Boot Selection, dai pe SELECT și pui ISO-ul de l-ai
+                    downloadat pe Desktop</li>
+                <li>La Partition Scheme să fie GPT (OBLIGATORIU)</li>
+                <li>Îi dai START și o să îți apară o căsuță micuță numită Windows User Experience</li>
+                <li>Bifezi prima căsuță, îi pui tu un nume la PC și le bifezi și pe ultimele două (Skip Privacy
+                    Questions parcă și Disable BitLocker)</li>
+                <li>Aștepți să se facă.. that's pretty much it</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">3. Instalare:</div>
+        <div class="step-content">
+            <ul>
+                <li>Îți salvezi ce ai de salvat, ieși din toate, dai restart la PC/Laptop și după ce se restartează,
+                    apeși <b>F12</b> (sau butonul special pe care îl are sistemul tău, caută pe internet model PC/Laptop
+                    + boot key dacă nu ești sigur care e. Ex: Lenovo Legion 5 boot key)</li>
+                <li>Îl deconectezi de la internet (scoți cablul din el)</li>
+                <li>O să-ți apară o listă, selectezi USB-ul tău (are el o denumire)</li>
+                <li>Dacă îți apar 2 rânduri cu același USB, dar unul se numește UEFI și unul simplu, încerci întâi cu
+                    UEFI și dacă nu merge, restart și încerci cu celălalt</li>
+                <li>Intri în installer-ul Windows, ștergi toate partițiile și după ți le faci tu după plac (Exemplu: o
+                    singură partiție, sau două partiții: una pentru Windows, una separată pentru jocuri și altele,
+                    alegerea ta)</li>
+                <li>Dacă îți apare cumva să te conectezi la wi-fi și altele, îi dai skip sau alegi acolo că nu ești
+                    conectat la internet</li>
+                <li>Și când îți cere să bagi CD Key, dai că nu ai, tot skip (nu mai știu cum se numește butonul, dar
+                    treci peste)</li>
+                <li>Aștepți să se completeze totul și îl lași să își dea restart</li>
+                <li>După ce își dă restarturi și pornește, și îți zice "We're setting things up for you." sau ceva de
+                    genul, o să mai ai niște chestii de debifat</li>
+                <li>În principiu dai skip la orice poți da skip și debifezi chestii de privacy pe acolo, nu accepți
+                    nimic, ez pez</li>
+                <li>Dacă după restart a intrat direct pe Desktop, e și mai bine</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">4. Activare Windows:</div>
+        <div class="step-content">
+            <p><a href="https://massgrave.dev/" target="_blank"><code>Apasă aici >> https://massgrave.dev/</code></a>
+            </p>
+            <ul>
+                <li>După ce Windows-ul s-a instalat și ești pe Desktop, primul lucru pe care-l faci este să-l conectezi
+                    la internet (recomandat prin cablu)</li>
+                <li>Intri pe Edge 🤢 și îți downloadezi un browser de-al tău (Firefox/Brave/LibreWolf/Chromium || Fara
+                    Chrome/Opera/OperaGX TE IMPLOR)</li>
+                <li>După dai acolo pe Settings (e undeva prin dreapta sus în browser) și cauți prin mizeriile alea să
+                    dai disable la Run in Background sau ceva de genul</li>
+                <li>Intri pe browserul tău downloadat și intri pe link-ul de la începutul pasului</li>
+                <li>Copiezi textul unde scrie "Method 1: PowerShell (Recommended)".. ar trebui să fie ceva de genul "irm
+                    https://get.activated.win | iex"</li>
+                <li>Dai click dreapta pe butonul de Start și apeși pe Windows Powershell (Admin)</li>
+                <li>Aștepți să îți apară consola și după ce scrie C:\Windows\system32, apeși acolo click dreapta și dai
+                    enter</li>
+                <li>Dacă îți dă ceva eroare cu roșu sau plm și nu îți apare nici o căsuță separată pe ecran, folosești
+                    link-ul de la "Having trouble? (Blocked by ISP or Old Windows)"</li>
+                <li>Dai enter și trebuie să îți apară pe ecran o consolă neagră "Microsoft Activation Scripts 3.9"
+                    something something</li>
+                <li>Apeși pe 1 și dai enter dacă-i necesar, și o să ți-l activeze. După ce e activat, poți ieși din
+                    toate alea</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">5. Update la Windows:</div>
+        <div class="step-content">
+            <ul>
+                <li>Se înțelege de la sine, dă-i click stânga pe Start, du-te la Settings / Update &amp; Security /
+                    Windows Updates / Check for Updates</li>
+                <li>Lasă-l să-și facă update, dă-i restart când îți cere (also dă-i Check for updates de 2-3 ori până
+                    îți zice You're up to date)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">6. Convert la IoT LTSC 2021 pentru Extended Support</div>
+        <div class="step-content">
+            <p>
+                <a href="https://massgrave.dev/windows_ltsc_links"
+                    target="_blank"><code>Apasă aici >> https://massgrave.dev/windows_ltsc_links</code></a>
+            </p>
+            <ul>
+                <li style="color: #d62c2c; font-weight: bold;"><strong>Pasul acesta este opțional, dar e recomandat
+                        pentru suport extins la update-uri de securitate</strong></li>
+                <li style="color: #d62c2c; font-weight: bold;"><strong>!!!!!! Dacă urmezi pasul ăsta și între timp dai
+                        restart ampulea la Windows, e posibil să-l fuți. Atenție mare și fără grabă!</strong></li>
+                <li>Intră pe link-ul de mai sus, o să te ducă pe pagina Windows LTSC Download</li>
+                <li>Dă-i scroll mai jos, o să vezi mai multe categorii la Download Links</li>
+                <li>Apasă pe Windows 10 LTSC 2021</li>
+                <li>Selectează varianta English x64 en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso (este
+                    prima, separată de toate cele de mai jos)</li>
+                <li>Salvează .ISO undeva (recomandat pe Desktop) și fă același lucru ca la început (urmează Pasul 2:
+                    Rufus, doar că acum cu .ISO asta) SAU click dreapta pe .ISO, și apasă Mount</li>
+                <li>Aici începe treaba mai "nasoală": dă-i click dreapta pe Start / Run / scrie regedit și dă-i enter
+                </li>
+                <li>Du-te la <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion</code></li>
+                <li>Și modifică astea:</li>
+                <li style="color: #27c400; font-weight: bold;"><strong>ProductName: Windows 10 IoT Enterprise LTSC
+                        2021</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>CompositionEditionID: EnterpriseS</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>EditionID: IoTEnterpriseS (i mare, de la Ionel,
+                        nu L mic)</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>DisplayVersion: 21H2</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>CurrentBuild: 19044</strong></li>
+                <li style="color: #27c400; font-weight: bold;"><strong>CurrentBuildNumber: 19044</strong></li>
+                <li>După ce ai modificat toate astea în regedit, îl poți închide. Asigură-te că le-ai modificat corect,
+                    fără ele nu vei putea face upgrade</li>
+                <li>Baga stick-ul USB făcut cu Windows 10 IoT LTSC 2021 (Treci peste dacă doar ai dat Mount la .ISO)
+                </li>
+                <li>Intră în el, dă-i pe <code>setup.exe</code></li>
+                <li>După ce-ți apare Install Windows 10, apasă pe "Change how Windows Setup downloads updates"</li>
+                <li>La secțiunea Get Updates, drivers and optional features, selectează Not right now și dă-i Next sau
+                    îl poți lăsa să downloadeze totul direct, tu decizi</li>
+                <li>După ce-i dai Next, așteaptă puțin că o să dureze. Când e gata de upgrade, o să-ți apară Ready to
+                    install</li>
+                <li>Dacă îți apare "Install Windows 10 IoT Enterprise LTSC și Keep personal files and apps", îi poți da
+                    install</li>
+                <li>O să apară Installing Windows 10, așteaptă să se completeze, and that's pretty much it</li>
+                <li>După ce e gata, apasă click dreapta pe Start / apasă Run / scrie <code>winver</code></li>
+                <li style="color: #b8b524; font-weight: bold;"><strong>Dacă în <code>winver</code> apar "Windows 10 IoT
+                        Enterprise LTSC și Version 21H2 (OS Build 19044), este totul bine. Dacă nu, repetă pașii, ai
+                        greșit ceva în regedit</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">7. Update din nou + activate Windows</div>
+        <div class="step-content">
+            <p>
+                <a href="https://massgrave.dev/" target="_blank"><code>Apasă aici >> https://massgrave.dev/</code></a>
+            </p>
+            <ul>
+                <li>Este foarte posibil ca după upgrade, Windows-ul să fie dezactivat din nou (Muie Bill Poarta, ce să
+                    zicem)</li>
+                <li>Folosește, once again, MassGrave Activator-ul (intoarce-te la pasul 4 dacă ai uitat)</li>
+                <li>Dă-i din nou update la Windows de câteva ori până e Up to Date (pasul 5)</li>
+                <li>După asta, dacă totul este în regulă, îți poți instala drivere necesare și multe altele</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">8. Debloat la Windows</div>
+        <div class="step-content">
+            <p>
+                <a href="https://github.com/ChrisTitusTech/winutil"
+                    target="_blank"><code>Apasă aici >> https://github.com/ChrisTitusTech/winutil</code></a>
+            </p>
+            <ul>
+                <li style="color: #d62c2c; font-weight: bold;">
+                    <strong>
+                        Pasul acesta este opțional și este recomandat NUMAI PENTRU POWER USERS.
+                        NU FOLOSI DEBLOAT-UL DACĂ NU AI HABAR CE FACI. Poți să-ți fuți Windows-ul
+                        foarte ușor dacă începi să bifezi chestii la întâmplare prin debloater,
+                        fără să știi ce dezactivezi sau ce efect are fiecare opțiune.
+                    </strong>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">9. Ultime retușuri + ce mai trebuie instalat + optionale</div>
+        <div class="step-content">
+            <ul>
+                <li><strong>Chestii obligatorii de instalat:</strong></li>
+                <li><a href="https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/"
+                        target="_blank"><code>Visual C++ Redistributable Runtimes</code></a></li>
+                <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=35"
+                        target="_blank"><code>DirectX</code></a></li>
+                <li><a href="https://www.google.com/search?client=firefox-b-d&q=gpu+drivers"
+                        target="_blank"><code>Driver Placa Video</code></a></li>
+                <li><a href="https://www.3dpchip.com/3dp/chip_down_lite.php?pl=en"
+                        target="_blank"><code>Driver Audio</code></a></li>
+                <li><a href="https://www.3dpchip.com/3dp/chip_down_lite.php?pl=en"
+                        target="_blank"><code>Driver Ethernet</code></a></li>
+                <li style="list-style: none;">&nbsp;</li>
+                <li><strong>Chestii opționale dar recomandate:</strong></li>
+                <li>Settings / System / About / Advanced System Settings / Hardware / Device Installation Settings /
+                    Setează pe No</li>
+                <li>Setarea asta previne Windows-ul din a mai face update automat la driverele audio/video/network
+                    (uneori fute toată funcționalitatea)</li>
+                <li style="list-style: none;">&nbsp;</li>
+                <li><strong>Alte opționale dar bune:</strong></li>
+                <li><a href="https://www.tenforums.com/attachments/tutorials/233056d1557269998-restore-windows-photo-viewer-windows-10-a-restore_windows_photo_viewer_current_user.reg"
+                        target="_blank"><code>Restore Photo Viewer in Windows 10</code></a></li>
+                <li><a href="https://www.7-zip.org/" target="_blank"><code>7zip</code></a></li>
+                <li><a href="https://www.win-rar.com/download.html?&L=0" target="_blank"><code>WinRAR</code></a></li>
+                <li><a href="https://www.qbittorrent.org/download" target="_blank"><code>qBittorrent</code></a></li>
+                <li><a href="https://www.3dpchip.com/3dp/chip_down_lite.php?pl=en"
+                        target="_blank"><code>3DP Chip</code></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

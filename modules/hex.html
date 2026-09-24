@@ -1,0 +1,112 @@
+<div class="hex-picker">
+
+  <div class="hex-picker-head">
+    <span class="hex-picker-kicker">COLOR UTILITY</span>
+    <h2>HEX Color Picker</h2>
+    <p>Alege o culoare. Fură codul. Fă-te că ai ales-o intenționat.</p>
+  </div>
+
+  <div class="hex-picker-grid">
+
+    <div class="hex-picker-panel">
+
+      <div
+        class="hex-saturation"
+        id="hex-saturation"
+        role="slider"
+        tabindex="0"
+        aria-label="Saturation and brightness"
+      >
+        <div class="hex-saturation-white"></div>
+        <div class="hex-saturation-black"></div>
+        <div class="hex-picker-pointer" id="hex-picker-pointer"></div>
+      </div>
+
+      <div class="hex-hue-wrap">
+        <div
+          class="hex-hue"
+          id="hex-hue"
+          role="slider"
+          tabindex="0"
+          aria-label="Hue"
+          aria-valuemin="0"
+          aria-valuemax="360"
+        >
+          <div class="hex-hue-pointer" id="hex-hue-pointer"></div>
+        </div>
+      </div>
+
+      <div class="hex-selected-preview">
+        <span>SELECTED COLOR</span>
+        <div class="hex-selected-dot" id="hex-selected-dot"></div>
+      </div>
+
+    </div>
+
+    <div class="hex-values">
+
+      <div class="hex-main-value">
+        <span class="hex-label">HEX</span>
+
+        <div class="hex-input-row">
+          <input
+            type="text"
+            id="hex-input"
+            value="#FF9F1C"
+            maxlength="7"
+            spellcheck="false"
+            autocomplete="off"
+          >
+
+          <button type="button" class="hex-copy" data-copy="hex">
+            COPY
+          </button>
+        </div>
+      </div>
+
+      <div class="hex-value-row">
+        <div>
+          <span class="hex-label">RGB</span>
+          <code id="hex-rgb">rgb(255, 159, 28)</code>
+        </div>
+
+        <button type="button" class="hex-copy" data-copy="rgb">
+          COPY
+        </button>
+      </div>
+
+      <div class="hex-value-row">
+        <div>
+          <span class="hex-label">HSL</span>
+          <code id="hex-hsl">hsl(35, 100%, 55%)</code>
+        </div>
+
+        <button type="button" class="hex-copy" data-copy="hsl">
+          COPY
+        </button>
+      </div>
+
+      <button type="button" id="hex-random" class="hex-random">
+        ↻ RANDOM COLOR
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="hex-history-block">
+
+    <div class="hex-history-head">
+      <span>RECENT COLORS</span>
+      <span class="hex-history-count">LOCAL SESSION</span>
+    </div>
+
+    <div class="hex-history" id="hex-history"></div>
+
+  </div>
+
+  <div class="hex-toast" id="hex-toast" aria-live="polite">
+    COPIED
+  </div>
+
+</div>

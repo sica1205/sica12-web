@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sica12 — proiecte, resurse și experimente personale.">
+  <meta name="theme-color" content="#0a0e1a">
+  <title>Sica12 ⟡ Personal Hub</title>
+  <link rel="icon" href="favicon1.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/guide.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hex.css">
+  <link rel="stylesheet" href="css/password-generator.css">
+</head>
+
+<body class="initial-load">
+  <script>
+    // Apply the saved theme before the first paint so a returning visitor
+    // never sees the other theme flash. First visit (no saved choice) = dark.
+    (function () {
+      if (localStorage.getItem('sica-hub-theme') !== 'light') {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <div class="bg" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <audio id="bgMusic" src="audio/background-music.ogg" loop preload="auto"></audio>
+
+  <header class="topbar" aria-label="Navigare principală">
+    <div class="topbar-brand" onclick="showView(homeView)" role="button" tabindex="0" aria-label="Acasă">
+      <div class="topbar-mark">
+  <img src="assets/topbar.png" alt="Sica12">
+</div>
+      <div class="topbar-brand-copy">
+        <strong>[ Sica12's Hub ]</strong>
+        <span>Personal Hub</span>
+      </div>
+    </div>
+
+    <nav class="topbar-nav" aria-label="Secțiuni">
+      <button onclick="showView(homeView)">Acasă</button>
+      <button onclick="showView(projectsView)">Proiecte</button>
+      <button onclick="showView(resourcesView)">Resurse</button>
+      <button onclick="showView(aboutView)">Despre</button>
+    </nav>
+
+<div class="utility-dock" aria-label="Setări site">
+
+  <!-- PERFORMANCE -->
+  <button class="utility-btn perf-btn"
+    id="perfBtn"
+    onclick="togglePerformance()"
+    title="Performance Mode"
+    aria-label="Performance Mode">
+
+    <!-- PERFORMANCE OFF -->
+    <svg class="utility-icon"
+      id="perfIconOff"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <path d="m12 14-4-4"></path>
+      <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+    </svg>
+
+    <!-- PERFORMANCE ON -->
+    <svg class="utility-icon hidden"
+      id="perfIconOn"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <path d="m12 14 4-4"></path>
+      <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+    </svg>
+
+  </button>
+
+
+  <!-- THEME -->
+  <button class="utility-btn theme-btn"
+    id="themeBtn"
+    onclick="toggleTheme()"
+    title="Dark Mode"
+    aria-label="Toggle Dark Mode">
+
+    <!-- LIGHT MODE -->
+    <svg class="utility-icon hidden"
+      id="themeIconMoon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <path d="M21 12.79A9 9 0 1 1 11.21 3
+        7 7 0 0 0 21 12.79z"></path>
+    </svg>
+
+    <!-- DARK MODE -->
+    <svg class="utility-icon"
+      id="themeIconSun"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <circle cx="12" cy="12" r="5"></circle>
+
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+
+    </svg>
+
+  </button>
+
+
+  <!-- MUSIC -->
+  <button class="utility-btn"
+    id="musicBtn"
+    onclick="toggleMusic()"
+    title="Mute/Unmute"
+    aria-label="Toggle Music">
+
+    <!-- MUSIC ON -->
+    <svg class="utility-icon"
+      id="musicIconOn"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+
+    </svg>
+
+    <!-- MUSIC OFF -->
+    <svg class="utility-icon hidden"
+      id="musicIconOff"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+
+    </svg>
+
+  </button>
+
+</div>
+
+  </header>
+
+  <main class="app-shell">
+    <section class="view active" id="homeView">
+      <div class="home-panel">
+        <section class="hero">
+          <span class="eyebrow">PERSONAL HUB · 2026</span>
+          <h1>Bine ai venit!</h1>
+          <p class="hero-copy">
+            Posibil că ai apăsat pe link din curiozitate. Greșeală sau nu, mă bucur că ai făcut-o.<br>
+            Ăsta e colțișorul meu de internet. Probabil nimic de aici n-o să-ți schimbe viața, dar poți să dai un ochi
+            și să vezi ce găsești. N-are vreun scop foarte concret — e mai mult un <strong>CV wanna-be</strong>, un loc
+            pentru proiectele
+            mele, experimente eșuate și alte chestii pe care am avut chef să le fac, din plictiseală și lipsă de
+            ocupație.
+          </p>
+        </section>
+
+        <section class="home-grid" aria-label="Navigare principală">
+          <button class="nav-card featured" onclick="showView(projectsView)">
+            <span class="card-kicker">01 · PROJECTS</span>
+            <div>
+              <h2>Proiecte</h2>
+              <p>Ce am construit, refăcut, testat și consider că merită arătat.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </button>
+
+          <button class="nav-card" onclick="showView(resourcesView)">
+            <span class="card-kicker">02 · RESOURCES</span>
+            <div>
+              <h2>Resurse</h2>
+              <p>Ghiduri, utilitare și alte chestii care chiar pot fi folositoare.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </button>
+
+          <button class="nav-card" onclick="showView(aboutView)">
+            <span class="card-kicker">03 · ABOUT</span>
+            <div>
+              <h2>Despre</h2>
+              <p>Ce este site-ul, de ce există și cam ce ajunge pe aici.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </button>
+        </section>
+
+<footer class="home-footer">
+  <span>© 2026 Sica12</span>
+  <small>Since 28·apr·2026 ··· Remade in 07·sep·2026</small>
+  <span>Personal Hub · Always Evolving.</span>
+</footer>
+      </div>
+    </section>
+
+    <section class="view" id="projectsView"></section>
+
+    <section class="view" id="projectDetailView"></section>
+
+    <section class="view" id="resourcesView"></section>
+
+    <section class="view" id="aboutView"></section>
+  </main>
+
+  <script src="js/theme.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/performance.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/projects-ui.js"></script>
+  <script src="js/resources.js"></script>
+  <script src="js/guide.js"></script>
+  <script src="js/resource-loader.js"></script>
+  <script src="js/password-generator.js"></script>
+  <script src="js/hex.js"></script>
+  <script src="js/about.js"></script>
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', function () {
+      window.scrollTo(0, 0);
+      setTimeout(function () { document.body.classList.remove('initial-load'); }, 1800);
+    });
+
+    document.querySelector('.topbar-brand')?.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        showView(homeView);
+      }
+    });
+  </script>
+</body>
+
+</html>

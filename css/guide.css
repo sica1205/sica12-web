@@ -1,0 +1,825 @@
+/* =========================================================
+   WINDOWS 10 LTSC INSTALL GUIDE
+   Sica12 Personal Hub
+   ========================================================= */
+
+
+/* =========================================================
+   GUIDE VIEW
+   ========================================================= */
+
+.guide-view {
+  width: 100%;
+  animation: guideEnter .45s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes guideEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   GUIDE HEADER
+   ========================================================= */
+
+.guide-view .view-header {
+  margin-bottom: 2rem;
+}
+
+.guide-view .back-btn {
+  margin-bottom: 1.15rem;
+}
+
+
+/* =========================================================
+   MAIN GUIDE CONTAINER
+   ========================================================= */
+
+.guide-content {
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.guide-content > .container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   INTRO / MAIN TITLE
+   ========================================================= */
+
+.guide-content > .container > h1:first-child {
+  position: relative;
+
+  margin: 0 0 .9rem;
+  padding: 1.55rem 1.65rem 1.55rem 1.8rem;
+
+  border: 1px solid rgba(155, 211, 90, .16);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155, 211, 90, .075),
+      rgba(255, 255, 255, .028)
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .035);
+
+  color: var(--accent);
+
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
+  font-weight: 750;
+  line-height: 1.45;
+
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+
+/* Accent rail */
+
+.guide-content > .container > h1:first-child::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 1.25rem;
+  bottom: 1.25rem;
+
+  width: 3px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 16px rgba(155, 211, 90, .30);
+}
+
+
+/* Tiny guide label */
+
+.guide-content > .container > h1:first-child::after {
+  content: "WINDOWS 10 · IoT LTSC 2021";
+
+  display: block;
+
+  margin-top: .8rem;
+
+  color: var(--text-dim);
+
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+
+  opacity: .72;
+}
+
+
+/* =========================================================
+   WARNING / IMPORTANT CARD
+   ========================================================= */
+
+.guide-content > .container > h1:nth-child(2) {
+  position: relative;
+
+  margin: 0 0 2rem;
+  padding: 1.05rem 1.2rem 1.05rem 3.15rem;
+
+  border: 1px solid rgba(255, 209, 102, .15);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 209, 102, .055),
+      rgba(255, 255, 255, .018)
+    );
+
+  color: var(--text-dim);
+
+  font-size: .84rem;
+  font-weight: 500;
+  line-height: 1.7;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+
+/* Warning icon */
+
+.guide-content > .container > h1:nth-child(2)::before {
+  content: "!";
+
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+
+  width: 26px;
+  height: 26px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(255, 209, 102, .25);
+  border-radius: 50%;
+
+  background: rgba(255, 209, 102, .075);
+
+  color: #e2d85b;
+
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   STEPS WRAPPER
+   ========================================================= */
+
+.guide-content .step {
+  position: relative;
+
+  margin: .75rem 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, .075);
+  border-radius: 18px;
+
+  /* Fake glass: the gradient sits on a translucent base, no real glass. */
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .045),
+      rgba(255, 255, 255, .018)
+    ),
+    rgba(10, 18, 32, .34);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, .075),
+    inset 0 1px 0 rgba(255, 255, 255, .025);
+
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
+}
+
+
+/* Hover */
+
+.guide-content .step:hover {
+  border-color: rgba(155, 211, 90, .18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155, 211, 90, .045),
+      rgba(255, 255, 255, .022)
+    ),
+    rgba(10, 18, 32, .40);
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, .11),
+    inset 0 1px 0 rgba(255, 255, 255, .035);
+
+  transform: translateY(-1px);
+}
+
+
+/* Open card */
+
+.guide-content .step.open {
+  border-color: rgba(155, 211, 90, .22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155, 211, 90, .048),
+      rgba(255, 255, 255, .018)
+    ),
+    rgba(10, 18, 32, .46);
+
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, .13),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+
+/* =========================================================
+   STEP TITLE
+   ========================================================= */
+
+.guide-content .step-title {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 72px;
+
+  padding:
+    1rem
+    4.5rem
+    1rem
+    4.65rem;
+
+  color: var(--text);
+
+  font-size: .91rem;
+  font-weight: 700;
+  line-height: 1.5;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    color .2s ease,
+    background .2s ease;
+}
+
+
+/* Step number */
+
+.guide-content .step-title::before {
+  content: counter(guide-step, decimal-leading-zero);
+
+  position: absolute;
+
+  left: 1.35rem;
+  top: 50%;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(155, 211, 90, .14);
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(155, 211, 90, .08),
+      rgba(255, 255, 255, .025)
+    );
+
+  color: var(--accent);
+
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+
+/* Counter */
+
+.guide-content .container {
+  counter-reset: guide-step;
+}
+
+.guide-content .step {
+  counter-increment: guide-step;
+}
+
+
+/* Hover title */
+
+.guide-content .step-title:hover {
+  color: var(--accent);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155, 211, 90, .035),
+      transparent 70%
+    );
+}
+
+
+/* =========================================================
+   STEP NUMBER / TITLE MICRO LABEL
+   ========================================================= */
+
+.guide-content .step-title {
+  letter-spacing: -.01em;
+}
+
+
+/* =========================================================
+   STEP TOGGLE
+   ========================================================= */
+
+.guide-content .step-title::after {
+  content: "+";
+
+  position: absolute;
+
+  right: 1.25rem;
+  top: 50%;
+
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(255, 255, 255, .10);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .025);
+
+  color: var(--accent);
+
+  font-size: 1.05rem;
+  font-weight: 500;
+
+  transition:
+    transform .3s cubic-bezier(.22, 1, .36, 1),
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+
+/* Open toggle */
+
+.guide-content .step.open .step-title::after {
+  content: "−";
+
+  background: rgba(155, 211, 90, .09);
+
+  border-color: rgba(155, 211, 90, .22);
+
+  box-shadow:
+    0 0 16px rgba(155, 211, 90, .08);
+}
+
+
+/* =========================================================
+   STEP CONTENT
+   ========================================================= */
+
+.guide-content .step-content {
+  display: none;
+
+  padding:
+    0
+    1.4rem
+    1.45rem
+    4.65rem;
+
+  border-top: 1px solid rgba(255, 255, 255, .06);
+
+  color: var(--text-dim);
+
+  font-size: .87rem;
+  line-height: 1.75;
+}
+
+
+/* Open */
+
+.guide-content .step.open .step-content {
+  display: block;
+
+  animation:
+    stepOpen .3s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+
+@keyframes stepOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   CONTENT INNER SPACING
+   ========================================================= */
+
+.guide-content .step-content > *:first-child {
+  margin-top: 1.15rem;
+}
+
+.guide-content .step-content > *:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.guide-content .step-content p {
+  margin: .75rem 0;
+
+  color: var(--text-dim);
+}
+
+
+/* =========================================================
+   LISTS
+   ========================================================= */
+
+.guide-content ul {
+  margin: 0;
+
+  padding:
+    1rem
+    1.15rem
+    1rem
+    2.25rem;
+
+  border: 1px solid rgba(255, 255, 255, .055);
+  border-radius: 13px;
+
+  background:
+    rgba(0, 0, 0, .10);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .018);
+}
+
+
+.guide-content li {
+  padding-left: .2rem;
+}
+
+
+.guide-content li + li {
+  margin-top: .65rem;
+}
+
+
+/* Bullet */
+
+.guide-content li::marker {
+  color: var(--accent);
+  font-size: .8em;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.guide-content a {
+  color: var(--accent);
+
+  text-decoration: none;
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    color .18s ease,
+    border-color .18s ease;
+}
+
+
+.guide-content a:hover {
+  color: var(--accent-2);
+
+  border-bottom-color: currentColor;
+}
+
+
+/* =========================================================
+   CODE
+   ========================================================= */
+
+.guide-content code {
+  display: inline-block;
+
+  max-width: 100%;
+
+  padding: .2rem .5rem;
+
+  border: 1px solid rgba(155, 211, 90, .13);
+  border-radius: 7px;
+
+  background:
+    rgba(155, 211, 90, .055);
+
+  color: var(--accent);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: .82em;
+
+  overflow-wrap: anywhere;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+
+/* =========================================================
+   STRONG
+   ========================================================= */
+
+.guide-content strong {
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   INLINE COLORED CONTENT
+   Preserve guide1.html colors
+   ========================================================= */
+
+.guide-content li[style*="#27c400"] {
+  color: #8fdf62 !important;
+}
+
+.guide-content li[style*="#b8b524"] {
+  color: #e2d85b !important;
+}
+
+.guide-content li[style*="#d62c2c"] {
+  color: #ff7777 !important;
+}
+
+
+/* =========================================================
+   IMAGES
+   ========================================================= */
+
+.guide-content img {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+
+  margin: 1rem auto;
+
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 12px;
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, .12);
+}
+
+
+/* =========================================================
+   HORIZONTAL RULE
+   ========================================================= */
+
+.guide-content hr {
+  margin: 1.5rem 0;
+
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.guide-content ::-webkit-scrollbar {
+  width: 7px;
+}
+
+.guide-content ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.guide-content ::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, .12);
+}
+
+.guide-content ::-webkit-scrollbar-thumb:hover {
+  background: rgba(155, 211, 90, .28);
+}
+
+
+/* =========================================================
+   GUIDE LOADING
+   ========================================================= */
+
+body.guide-loading .guide-view {
+  opacity: .65;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+  .guide-content {
+    width: 100%;
+  }
+
+
+  /* Intro */
+
+  .guide-content > .container > h1:first-child {
+    padding:
+      1.25rem
+      1.15rem
+      1.25rem
+      1.35rem;
+
+    border-radius: 16px;
+
+    font-size: 1.02rem;
+  }
+
+
+  .guide-content > .container > h1:first-child::before {
+    top: 1rem;
+    bottom: 1rem;
+  }
+
+
+  /* Warning */
+
+  .guide-content > .container > h1:nth-child(2) {
+    padding:
+      1rem
+      1rem
+      1rem
+      2.9rem;
+
+    border-radius: 14px;
+
+    font-size: .77rem;
+  }
+
+
+  /* Steps */
+
+  .guide-content .step {
+    border-radius: 15px;
+  }
+
+
+  .guide-content .step-title {
+    min-height: 62px;
+
+    padding:
+      .9rem
+      3.7rem
+      .9rem
+      4.05rem;
+
+    font-size: .84rem;
+  }
+
+
+  /* Step number */
+
+  .guide-content .step-title::before {
+    left: 1rem;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    font-size: .61rem;
+  }
+
+
+  /* Toggle */
+
+  .guide-content .step-title::after {
+    right: .9rem;
+
+    width: 29px;
+    height: 29px;
+  }
+
+
+  /* Content */
+
+  .guide-content .step-content {
+    padding:
+      0
+      1rem
+      1.1rem
+      4.05rem;
+
+    font-size: .81rem;
+    line-height: 1.7;
+  }
+
+
+  .guide-content ul {
+    padding:
+      .85rem
+      .85rem
+      .85rem
+      1.8rem;
+
+    border-radius: 10px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .guide-content .step-title {
+    padding-left: 3.65rem;
+  }
+
+  .guide-content .step-content {
+    padding-left: 1rem;
+  }
+
+  .guide-content .step-title::before {
+    left: .85rem;
+  }
+}
