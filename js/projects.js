@@ -123,7 +123,7 @@ Este un mic proiect făcut mai mult de distracție și ca experiment, pornind de
     description: `Bulgăreasca Calu' este un joc simplu de tip Slots (păcănea), făcut dintr-un inside joke pornit de la o melodie bulgărească de pe internet, numită „Bulgareasca Calu'”.
 Gluma a degenerat puțin și, la un moment dat, a ajuns să existe și o păcănea pe tema asta. Cam asta e toată povestea.
 
-Începi jocul cu 100 de lei și, ca la orice Slots, îți poți alege bet-ul pe care vrei să-l folosești. Scopul este simplu: joacă, încearcă-ți norocul cât mai mult și fă un scor cât mai mare.
+Începi jocul cu 1000 de lei și, ca la orice Slots, îți poți alege bet-ul pe care vrei să-l folosești. Scopul este simplu: joacă, încearcă-ți norocul cât mai mult și fă un scor cât mai mare.
 
 Iar dacă pierzi, poți să joci iar. Și iar. Și iar. Fără oprire.
 `,
