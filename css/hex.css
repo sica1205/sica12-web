@@ -1,0 +1,885 @@
+/* ============================================================
+   HEX COLOR PICKER
+   Personal Hub native module
+   ============================================================ */
+
+.hex-picker {
+  --picker-color: #ff9f1c;
+
+  width: 100%;
+  min-width: 0;
+
+  color: var(--text);
+}
+
+.hex-picker *,
+.hex-picker *::before,
+.hex-picker *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.hex-picker-head {
+  margin-bottom: 2rem;
+}
+
+.hex-picker-kicker {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  color: var(--accent);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hex-picker-head h2 {
+  margin: 0 0 0.6rem;
+
+  font-family: "Audiowide", monospace;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.hex-picker-head p {
+  margin: 0;
+
+  color: var(--text-dim);
+
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   MAIN GRID
+   ============================================================ */
+
+.hex-picker-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 0.9fr)
+    minmax(0, 1.1fr);
+
+  gap: 1.2rem;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   SHARED PANEL
+   ============================================================ */
+
+.hex-picker-panel,
+.hex-main-value,
+.hex-value-row,
+.hex-history-block {
+  border: 1px solid var(--glass-border);
+
+  background: var(--glass-bg);
+
+  box-shadow: var(--shadow);
+
+  border-radius: 16px;
+}
+
+
+/* ============================================================
+   CUSTOM PICKER
+   ============================================================ */
+
+.hex-picker-panel {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  min-width: 0;
+
+  padding: 1rem;
+}
+
+
+/* ============================================================
+   SATURATION / BRIGHTNESS
+   ============================================================ */
+
+.hex-saturation {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1.15 / 1;
+
+  min-height: 280px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+
+  background: hsl(35, 100%, 50%);
+
+  cursor: crosshair;
+
+  touch-action: none;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-saturation:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.hex-saturation:focus-visible,
+.hex-hue:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.hex-saturation-white,
+.hex-saturation-black {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.hex-saturation-white {
+  background:
+    linear-gradient(
+      to right,
+      #ffffff,
+      rgba(255, 255, 255, 0)
+    );
+}
+
+.hex-saturation-black {
+  background:
+    linear-gradient(
+      to top,
+      #000000,
+      rgba(0, 0, 0, 0)
+    );
+}
+
+.hex-picker-pointer {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.85),
+    0 2px 8px rgba(0, 0, 0, 0.45);
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   HUE
+   ============================================================ */
+
+.hex-hue-wrap {
+  width: 100%;
+  min-width: 0;
+}
+
+.hex-hue {
+  position: relative;
+
+  width: 100%;
+  height: 20px;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      to right,
+      hsl(0, 100%, 50%),
+      hsl(60, 100%, 50%),
+      hsl(120, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(240, 100%, 50%),
+      hsl(300, 100%, 50%),
+      hsl(360, 100%, 50%)
+    );
+
+  cursor: pointer;
+
+  touch-action: none;
+
+  transition:
+    border-color 0.18s ease;
+}
+
+.hex-hue:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.hex-hue-pointer {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+
+  width: 10px;
+  height: 28px;
+
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.85),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   SELECTED COLOR
+   ============================================================ */
+
+.hex-selected-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  min-width: 0;
+
+  padding: 0.1rem 0.15rem 0;
+
+  color: var(--text-faint);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.hex-selected-dot {
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+
+  background: var(--picker-color);
+
+  box-shadow:
+    0 5px 16px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-selected-dot:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ============================================================
+   VALUES
+   ============================================================ */
+
+.hex-values {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.8rem;
+
+  min-width: 0;
+}
+
+.hex-main-value,
+.hex-value-row {
+  min-width: 0;
+
+  padding: 1.1rem;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-main-value:hover,
+.hex-value-row:hover,
+.hex-history-block:hover {
+  border-color: var(--glass-border-hover);
+
+  background: var(--glass-hover);
+
+  box-shadow: var(--shadow-hover);
+}
+
+.hex-label {
+  display: block;
+
+  margin-bottom: 0.55rem;
+
+  color: var(--text-faint);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hex-input-row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 0.6rem;
+
+  min-width: 0;
+}
+
+#hex-input {
+  width: 100%;
+  min-width: 0;
+
+  padding: 0.8rem 0.9rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+
+  outline: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    ),
+    rgba(0, 0, 0, 0.16);
+
+  color: var(--picker-color);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+#hex-input:hover {
+  border-color: var(--glass-border-hover);
+}
+
+#hex-input:focus {
+  border-color: var(--picker-color);
+
+  box-shadow:
+    0 0 0 3px color-mix(
+      in srgb,
+      var(--picker-color) 14%,
+      transparent
+    );
+}
+
+.hex-value-row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.hex-value-row > div {
+  min-width: 0;
+}
+
+.hex-value-row code {
+  display: block;
+
+  max-width: 100%;
+
+  color: var(--text);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.hex-copy,
+.hex-random {
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  color: var(--text-dim);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-copy {
+  padding: 0.65rem 0.8rem;
+}
+
+.hex-copy:hover {
+  border-color: var(--picker-color);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  color: var(--picker-color);
+
+  transform: translateY(-1px);
+}
+
+.hex-copy:active,
+.hex-random:active {
+  transform: translateY(0);
+}
+
+.hex-random {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+}
+
+.hex-random:hover {
+  border-color: var(--picker-color);
+
+  background: var(--picker-color);
+
+  color: #080808;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.24);
+}
+
+
+/* ============================================================
+   HISTORY
+   ============================================================ */
+
+.hex-history-block {
+  width: 100%;
+  min-width: 0;
+
+  margin-top: 1.2rem;
+
+  padding: 1rem;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-history-head {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 0.8rem;
+
+  color: var(--text-faint);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hex-history-count {
+  opacity: 0.65;
+}
+
+.hex-history {
+  display: grid;
+
+  grid-template-columns:
+    repeat(8, minmax(0, 1fr));
+
+  gap: 0.5rem;
+
+  min-width: 0;
+}
+
+.hex-swatch {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 9px;
+
+  background: var(--swatch);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.hex-swatch:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--text);
+
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.hex-swatch::after {
+  content: attr(data-color);
+
+  position: absolute;
+
+  left: 50%;
+  bottom: calc(100% + 8px);
+
+  z-index: 10;
+
+  transform:
+    translateX(-50%)
+    translateY(4px);
+
+  padding: 0.4rem 0.55rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(8, 12, 20, 0.94);
+
+  color: var(--text);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.hex-swatch:hover::after {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+
+.hex-toast {
+  position: fixed;
+
+  right: 1.2rem;
+  bottom: 1.2rem;
+
+  z-index: 9999;
+
+  max-width: calc(100vw - 2rem);
+
+  padding: 0.65rem 0.9rem;
+
+  border: 1px solid var(--picker-color);
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(8, 12, 20, 0.94);
+
+  color: var(--picker-color);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  text-align: center;
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  pointer-events: none;
+
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.32);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hex-toast.show {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   MOBILE / TABLET
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .hex-picker {
+    overflow: hidden;
+  }
+
+  .hex-picker-head {
+    margin-bottom: 1.25rem;
+  }
+
+  .hex-picker-head h2 {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+
+  .hex-picker-head p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .hex-picker-kicker {
+    font-size: 0.62rem;
+  }
+
+  .hex-picker-grid {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.8rem;
+  }
+
+  .hex-picker-panel {
+    padding: 0.75rem;
+  }
+
+  .hex-saturation {
+    min-height: 220px;
+
+    aspect-ratio: 1 / 0.82;
+  }
+
+  .hex-picker-pointer {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hex-hue {
+    height: 24px;
+  }
+
+  .hex-hue-pointer {
+    width: 12px;
+    height: 32px;
+  }
+
+  .hex-values {
+    gap: 0.65rem;
+  }
+
+  .hex-main-value,
+  .hex-value-row {
+    padding: 0.85rem;
+  }
+
+  .hex-input-row {
+    gap: 0.45rem;
+  }
+
+  #hex-input {
+    padding: 0.7rem;
+
+    font-size: 1rem;
+  }
+
+  .hex-value-row {
+    gap: 0.5rem;
+  }
+
+  .hex-value-row code {
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  .hex-copy {
+    padding: 0.6rem 0.65rem;
+
+    font-size: 0.62rem;
+  }
+
+  .hex-random {
+    width: 100%;
+
+    padding: 0.8rem;
+
+    font-size: 0.68rem;
+  }
+
+  .hex-history-block {
+    margin-top: 0.8rem;
+
+    padding: 0.75rem;
+  }
+
+  .hex-history-head {
+    gap: 0.5rem;
+
+    font-size: 0.56rem;
+    letter-spacing: 0.7px;
+  }
+
+  .hex-history {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 0.4rem;
+  }
+
+  .hex-swatch::after {
+    display: none;
+  }
+
+  .hex-toast {
+    left: 50%;
+    right: auto;
+
+    bottom: 1rem;
+
+    width: max-content;
+
+    transform:
+      translate(-50%, 10px);
+
+    font-size: 0.62rem;
+  }
+
+  .hex-toast.show {
+    transform:
+      translate(-50%, 0);
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .hex-picker-head h2 {
+    font-size: 1.25rem;
+  }
+
+  .hex-saturation {
+    min-height: 185px;
+  }
+
+  .hex-input-row,
+  .hex-value-row {
+    grid-template-columns: 1fr;
+  }
+
+  #hex-input {
+    text-align: center;
+  }
+
+  .hex-copy {
+    width: 100%;
+  }
+
+  .hex-history {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
