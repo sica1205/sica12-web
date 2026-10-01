@@ -13,10 +13,10 @@
 
   const STYLES = [
     { id: 'default', label: 'Default', file: 'css/style.css', swatch: 'linear-gradient(135deg, #9bd35a, #ffd166)' },
-    { id: 'minimal', label: 'Minimal', file: 'styles/style-minimal.css', swatch: 'linear-gradient(135deg, #2b59ff, #12b3a8)' },
-    { id: 'brutalist', label: 'Brutalist', file: 'styles/style-brutalist.css', swatch: 'linear-gradient(135deg, #ff4d6d, #ffc93c)' },
-    { id: 'neon', label: 'Neon', file: 'styles/style-neon.css', swatch: 'linear-gradient(135deg, #2ee6ff, #ff3df0)' },
-    { id: 'terminal', label: 'Terminal', file: 'styles/style-terminal.css', swatch: 'linear-gradient(135deg, #3bff86, #ffb000)' }
+    { id: 'minimal', label: 'Minimal', file: 'STYLES/style-minimal.css?v=1', swatch: 'linear-gradient(135deg, #2b59ff, #12b3a8)' },
+    { id: 'brutalist', label: 'Brutalist', file: 'STYLES/style-brutalist.css?v=1', swatch: 'linear-gradient(135deg, #ff4d6d, #ffc93c)' },
+    { id: 'neon', label: 'Neon', file: 'STYLES/style-neon.css?v=1', swatch: 'linear-gradient(135deg, #2ee6ff, #ff3df0)' },
+    { id: 'terminal', label: 'Terminal', file: 'STYLES/style-terminal.css?v=1', swatch: 'linear-gradient(135deg, #3bff86, #ffb000)' }
   ];
 
   let activeId = readSaved();
@@ -202,6 +202,8 @@
     buildUI();
     // Re-sync the highlight if the page is restored from the back/forward cache.
     window.addEventListener('pageshow', markActive);
+    // Diagnostic: tells you in DevTools which build the browser actually ran.
+    if (window.console && console.log) console.log('[theme-switcher] build 2 loaded');
   }
 
   if (document.readyState === 'loading') {

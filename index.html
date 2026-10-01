@@ -23,7 +23,7 @@
       try {
         var saved = localStorage.getItem('sica-hub-style');
         if (saved && STYLE_NAMES.indexOf(saved) !== -1) {
-          document.getElementById('siteStylesheet').href = 'STYLES/style-' + saved + '.css';
+          document.getElementById('siteStylesheet').href = 'STYLES/style-' + saved + '.css?v=1';
         }
       } catch (e) {}
     })();
@@ -279,7 +279,7 @@
   <script src="js/password-generator.js"></script>
   <script src="js/hex.js"></script>
   <script src="js/about.js"></script>
-  <script src="js/theme-switcher.js"></script>
+  <script src="js/theme-switcher.js?v=2"></script>
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.addEventListener('load', function () {
