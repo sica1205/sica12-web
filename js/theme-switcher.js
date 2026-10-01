@@ -20,6 +20,7 @@
   ];
 
   let activeId = readSaved();
+  let pendingThemeLink = null;
 
   function getLink() {
     return document.getElementById('siteStylesheet') ||
@@ -46,12 +47,45 @@
     const style = STYLES.find(function (s) { return s.id === id; }) || STYLES[0];
     activeId = style.id;
 
-    const link = getLink();
-    if (link && link.getAttribute('href') !== style.file) {
-      link.setAttribute('href', style.file);
-    }
     if (persist !== false) writeSaved(style.id);
     markActive();
+
+    const current = getLink();
+    if (current && current.getAttribute('href') === style.file) return;
+
+    // Load the new stylesheet FIRST and only remove the old one once the new one
+    // has actually applied. Swapping the href of the existing <link> makes the
+    // browser drop the current CSS immediately, which flashes unstyled content
+    // on a real network (GitHub Pages). On a local disk it is instant, so the
+    // flash is invisible. This keeps the page styled the whole time.
+    if (pendingThemeLink && pendingThemeLink.parentNode) {
+      pendingThemeLink.parentNode.removeChild(pendingThemeLink);
+      pendingThemeLink = null;
+    }
+
+    const next = document.createElement('link');
+    next.rel = 'stylesheet';
+    next.href = style.file;
+
+    function onLoad() {
+      next.removeEventListener('load', onLoad);
+      if (current && current.parentNode) current.parentNode.removeChild(current);
+      next.id = 'siteStylesheet';
+      if (pendingThemeLink === next) pendingThemeLink = null;
+    }
+
+    function onError() {
+      next.removeEventListener('error', onError);
+      // Keep whichever stylesheet still works instead of leaving the page bare.
+      if (next.parentNode) next.parentNode.removeChild(next);
+      if (window.console && console.warn) console.warn('[theme] could not load ' + style.file);
+      if (pendingThemeLink === next) pendingThemeLink = null;
+    }
+
+    next.addEventListener('load', onLoad);
+    next.addEventListener('error', onError);
+    document.head.appendChild(next);
+    pendingThemeLink = next;
   }
 
   function injectStyles() {
