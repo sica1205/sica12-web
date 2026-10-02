@@ -13,10 +13,10 @@
 
   const STYLES = [
     { id: 'default', label: 'Default', file: 'css/style.css', swatch: 'linear-gradient(135deg, #9bd35a, #ffd166)' },
-    { id: 'minimal', label: 'Minimal', file: 'STYLES/style-minimal.css?v=1', swatch: 'linear-gradient(135deg, #2b59ff, #12b3a8)' },
-    { id: 'brutalist', label: 'Brutalist', file: 'STYLES/style-brutalist.css?v=1', swatch: 'linear-gradient(135deg, #ff4d6d, #ffc93c)' },
-    { id: 'neon', label: 'Neon', file: 'STYLES/style-neon.css?v=1', swatch: 'linear-gradient(135deg, #2ee6ff, #ff3df0)' },
-    { id: 'terminal', label: 'Terminal', file: 'STYLES/style-terminal.css?v=1', swatch: 'linear-gradient(135deg, #3bff86, #ffb000)' }
+    { id: 'minimal', label: 'Minimal', file: 'STYLES/style-minimal.css?v=2', swatch: 'linear-gradient(135deg, #2b59ff, #12b3a8)' },
+    { id: 'brutalist', label: 'Brutalist', file: 'STYLES/style-brutalist.css?v=2', swatch: 'linear-gradient(135deg, #ff4d6d, #ffc93c)' },
+    { id: 'neon', label: 'Neon', file: 'STYLES/style-neon.css?v=2', swatch: 'linear-gradient(135deg, #2ee6ff, #ff3df0)' },
+    { id: 'terminal', label: 'Terminal', file: 'STYLES/style-terminal.css?v=2', swatch: 'linear-gradient(135deg, #3bff86, #ffb000)' }
   ];
 
   let activeId = readSaved();
@@ -106,7 +106,23 @@
       '.style-menu-check{opacity:0;font-size:0.85rem;}',
       '.style-menu-item.active .style-menu-check{opacity:0.9;}',
       '.style-btn.open{transform:translateY(-1px);}',
-      '@media (max-width: 620px){.topbar-brand{width:auto;min-width:0;}.topbar-brand-copy{min-width:0;}.topbar-brand-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}.style-menu{min-width:180px;}}'
+      // The theme stylesheets style .topbar / .topbar-brand too, and applyStyle()
+      // appends them to <head> *after* this block, so a plain `.topbar-brand`
+      // rule would lose the cascade. The `body` prefix keeps these structural
+      // fixes winning: on narrow screens the brand must be allowed to shrink,
+      // otherwise the extra-wide Brutalist (uppercase) / Terminal (monospace)
+      // brand text pushes the whole utility dock — theme button included — out
+      // of the taskbar.
+      '@media (max-width: 900px){' +
+      'body .topbar{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);}' +
+      'body .topbar-brand{width:auto;min-width:0;}' +
+      'body .topbar-brand-copy{min-width:0;overflow:hidden;}' +
+      'body .topbar-brand-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}' +
+      '}',
+      '@media (max-width: 620px){' +
+      'body .topbar{grid-template-columns:minmax(0,1fr) auto;}' +
+      '.style-menu{min-width:180px;}' +
+      '}'
     ].join('');
     const el = document.createElement('style');
     el.id = 'styleSwitcherStyles';

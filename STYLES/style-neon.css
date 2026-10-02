@@ -317,6 +317,12 @@ body.perf-on *, body.perf-on *::before, body.perf-on *::after { text-shadow: non
 body.perf-on .bg-overlay { background: linear-gradient(180deg, rgba(11, 16, 34, 0.35) 0%, rgba(5, 7, 15, 0.55) 100%); }
 
 @media (max-width: 900px) {
+  /* Narrow screens: the taskbar uses `1fr` grid tracks, so the brand cannot
+     shrink and instead pushes the utility dock (theme switcher included) out of
+     the bar. Allow it to truncate rather than overflow. */
+  .topbar-brand { width: auto; min-width: 0; }
+  .topbar-brand-copy { min-width: 0; overflow: hidden; }
+  .topbar-brand-copy strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .home-grid, .project-grid, .about-layout, .detail-layout, .spotlight-card { grid-template-columns: 1fr; }
   .nav-card.featured { min-height: 250px; }
   .project-main-card { grid-row: auto; min-height: 420px; }
